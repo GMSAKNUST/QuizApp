@@ -1,8 +1,8 @@
-import {FirstRangeSelected, RangeSelected, SelectingRange} from '../types'
+import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs} from '../types'
 
 
 
-export default (state, action )=> {
+const AppReducer= (state, action )=> {
 
 switch (action.type) {
     case FirstRangeSelected:{
@@ -26,6 +26,12 @@ switch (action.type) {
 
         }
     }
+    case AllSurahs:{
+        return{
+            ...state,
+            allSurahs: action.payload.val
+        }
+    }
         
        
 
@@ -41,3 +47,4 @@ switch (action.type) {
 
 
 
+export default  AppReducer
