@@ -1,0 +1,23 @@
+.noRange {
+  width: 50vw;
+  height: 30vh;
+  border: 2px solid black;
+}
+
+.noRange p {
+  margin-top: 85px;
+  font-size: 30px;
+  color: gray;
+}
+
+@media (max-width: 500px) {
+  .noRange {
+    width: auto;
+    height: auto;
+    margin: 20px;
+  }
+
+  .noRange p {
+    margin: auto;
+  }
+}
