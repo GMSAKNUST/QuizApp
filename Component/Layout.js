@@ -1,14 +1,18 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import LayoutStyles from './Layout.module.css'
-export default function Layout({children}) {
-    //this will be change one time
-const [firstRangeSelected, setFirstRangeSelected] = useState(false)
+import  AppContext from '../Component/Context/AppContext/AppContext'
 
-const [selectingRange, setSelectingRange] = useState(false)
-const [RangeSelected, setRangeSelected] = useState(false)
-const [Range, setRange] = useState(true)
+
+
+
+
+export default function Layout({children}) {
+
+    const appContext = useContext(AppContext)
+    const {firstRangeSelected, selectingRange,rangeSelected, setFirstRangeSelected, setSelectingRange, setRangeSelected} = appContext
+
 const dt = new Date()
 let date = dt.getFullYear()
 
@@ -17,13 +21,17 @@ const ChangingState = ()=> {
         setFirstRangeSelected(true)
         setSelectingRange(true)
     }
-    else if(selectingRange&& Range){
+    else if(selectingRange){
 setRangeSelected(true)
+// setRange(true)
+
 setSelectingRange(false)
+// seRange will be set when a range has been selected
     }
     else {
         setRangeSelected(false) 
         setSelectingRange(true)
+        // setRange(false)
     }
 }
     return (
@@ -66,7 +74,7 @@ setSelectingRange(false)
                       "Select Range":
                       selectingRange?
                       "Confirm":
-                      RangeSelected?
+                      rangeSelected?
                       "Change Range":
                       "Select Range"
                   }
