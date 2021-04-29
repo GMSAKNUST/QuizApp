@@ -6,8 +6,10 @@ import Styles from '../styles/SelectingRange.module.css'
 export default function SelectingRange() {
 
     const appContext = useContext(AppContext)
-    const {allSurahs , setRangeSelected, setSelectingRange, selectingRange , rangeSelected} = appContext
+    const {allSurahs , setRangeSelected, setSelectingRange, selectingRange , rangeSelected, setEnd, setStart} = appContext
     const [validate, setValidate] = useState()
+
+    // local state
 const [Startval, setStartVal] = useState()
 const [Endval, setEndval] = useState()
 
@@ -41,15 +43,19 @@ const myRange = (e)=> {
 
     let myv = e.target.value;
    
-    // console.log(val)
+    // console.log(e.target.selectedIndex)
+    let index = e.target.selectedIndex
 
     if(e.target.name=="StartRange"){
+        setStart(index)
+
         setStartVal(myv)
 
     }
     else{
+        setEnd(index)
         setEndval(myv)
-
+        
 
     }
 
