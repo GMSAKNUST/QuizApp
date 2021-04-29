@@ -1,4 +1,4 @@
-import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs} from '../types'
+import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs, SetEnd, SetStart} from '../types'
 
 
 
@@ -30,6 +30,20 @@ switch (action.type) {
         return{
             ...state,
             allSurahs: action.payload.val
+        }
+    }
+    case SetEnd: {
+        return{
+            ...state,
+            end:action.payload.val
+        }
+
+
+    }
+    case SetStart:{
+        return{
+            ...state,
+            start:action.payload.val
         }
     }
         

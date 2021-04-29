@@ -1,4 +1,4 @@
-import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs} from '../types'
+import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs, SetStart, SetEnd} from '../types'
 import axios from 'axios'
 import {useReducer, useEffect} from 'react'
 import AppContext from './AppContext'
@@ -10,7 +10,9 @@ const initialState = {
     firstRangeSelected:false,
     selectingRange:false,
     RangeSelected:false,
-    allSurahs:[]
+    allSurahs:[],
+    start:null,
+    end:null,
 }
 
 const [state, dispatch] = useReducer(AppReducer, initialState)
@@ -68,6 +70,26 @@ const setSelectingRange = (value)=> {
       })
 }
 
+const setStart =(value)=> {
+    dispatch({
+        type:SetStart,
+        payload:{
+            val:value
+        }
+    })
+
+}
+
+const setEnd = (value)=> {
+dispatch({
+    type:SetEnd,
+    payload:{
+        val:value
+    }
+})
+}
+
+// 
 
 return (
     <AppContext.Provider
@@ -76,9 +98,13 @@ firstRangeSelected:state.firstRangeSelected,
 selectingRange:state.selectingRange,
 rangeSelected:state.rangeSelected,
 allSurahs:state.allSurahs,
+start: state.start,
+end:state.end,
 setFirstRangeSelected,
 setRangeSelected,
 setSelectingRange,
+setEnd,
+setStart,
 
     }}
     >
