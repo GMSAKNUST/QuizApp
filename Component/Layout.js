@@ -20,13 +20,12 @@ const ChangingState = ()=> {
     if (!firstRangeSelected) {
         setFirstRangeSelected(true)
         setSelectingRange(true)
+        setRangeSelected(false)
     }
-    else if(selectingRange){
+    else if(selectingRange && rangeSelected){
+        // send range to server
 setRangeSelected(true)
-// setRange(true)
-
 setSelectingRange(false)
-// seRange will be set when a range has been selected
     }
     else {
         setRangeSelected(false) 
