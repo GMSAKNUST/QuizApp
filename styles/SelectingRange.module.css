@@ -1,0 +1,63 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  width: 50vw;
+  height: 30vh;
+}
+
+.main h1 {
+  color: gray;
+  font-size: 30px;
+}
+.main center {
+  display: flex;
+  justify-content: space-around;
+}
+
+.main select {
+  padding: 5px;
+  background: #fff;
+  border: 1px solid gray;
+  outline: gray;
+}
+
+.main span {
+  color: red;
+  margin: 20px;
+}
+
+@media (max-width: 350px) {
+  .main center {
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: -20px;
+  }
+  .main select {
+    width: 120px;
+    font-size: 10px;
+  }
+  .main center div:first-of-type {
+    margin-bottom: 10px;
+  }
+  .main h1 {
+    align-self: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .main {
+    width: auto;
+
+    margin: 20px;
+    height: auto;
+  }
+
+  .main h1 {
+    font-size: 20px;
+    margin: 50px;
+  }
+  .main center {
+    margin-bottom: 10px;
+  }
+}
