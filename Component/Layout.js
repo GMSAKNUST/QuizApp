@@ -11,12 +11,12 @@ import  AppContext from '../Component/Context/AppContext/AppContext'
 export default function Layout({children}) {
 
     const appContext = useContext(AppContext)
-    const {firstRangeSelected, selectingRange,rangeSelected, setFirstRangeSelected, setSelectingRange, setRangeSelected} = appContext
+    const {firstRangeSelected, selectingRange,rangeSelected, setFirstRangeSelected, setSelectingRange, setRangeSelected, start, end, SendRange} = appContext
 
 const dt = new Date()
-let date = dt.getFullYear()
+let date = dt.getFullYear();
 
-const ChangingState = ()=> {
+async function  ChangingState  (){
     if (!firstRangeSelected) {
         setFirstRangeSelected(true)
         setSelectingRange(true)
@@ -24,15 +24,19 @@ const ChangingState = ()=> {
     }
     else if(selectingRange && rangeSelected){
         // send range to server
-setRangeSelected(true)
-setSelectingRange(false)
+        // console.log(start, end)
+        // setRangeSelected(true)
+        // setSelectingRange(false)
+        
+   await SendRange(start, end);
+
     }
     else {
         setRangeSelected(false) 
         setSelectingRange(true)
         // setRange(false)
     }
-}
+};
     return (
         <section>
             <center>

@@ -1,4 +1,4 @@
-import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs, SetStart, SetEnd} from '../types'
+import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs, SetStart, SetEnd, SetGeneratedRange} from '../types'
 import axios from 'axios'
 import {useReducer, useEffect} from 'react'
 import AppContext from './AppContext'
@@ -13,23 +13,25 @@ const initialState = {
     allSurahs:[],
     start:null,
     end:null,
+    generatedRange:{}
 }
 
 const [state, dispatch] = useReducer(AppReducer, initialState)
 // Actions goes here
 
-// useEffect(() => {
-// }, [])
+
 
 useEffect(() => {
     setFirstRangeSelected(false)
 
+
+   
+
   axios.get('/api/surahs')
   .then(res => {
-    //   console.log(res.data)
     setAllSurahs(res.data)
   })
-//   console.log(state. allSurahs)
+
 }, [])
 
 
@@ -89,7 +91,40 @@ dispatch({
 })
 }
 
-// 
+const setGeneratedRange =(value )=> {
+dispatch({
+    type:SetGeneratedRange,
+    payload:{
+        val: value
+    }
+})
+}
+async function SendRange(start , end){
+   
+    // axios.post("/api/randomSurahs", {
+    //     start:start,
+    //     end:end
+    // })
+    
+    await axios.get(`https://mqi-quiz-api.herokuapp.com/quiz/quran/generate-pages/?start=${state.start}&end=${state.end}`)
+    .then (res => {
+        if(res.status !=200){
+setRangeSelected(false)
+setSelectingRange(true)
+        }else {
+            // store range 
+            setGeneratedRange(res.data)
+console.log(res.data)
+            setRangeSelected(true)
+            setSelectingRange(false)
+            
+
+         
+        }
+    }
+        )
+
+}
 
 return (
     <AppContext.Provider
@@ -100,11 +135,15 @@ rangeSelected:state.rangeSelected,
 allSurahs:state.allSurahs,
 start: state.start,
 end:state.end,
+generatedRange:state.generatedRange,
 setFirstRangeSelected,
 setRangeSelected,
 setSelectingRange,
 setEnd,
 setStart,
+SendRange,
+setGeneratedRange,
+setAllSurahs,
 
     }}
     >

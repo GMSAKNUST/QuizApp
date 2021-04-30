@@ -6,7 +6,7 @@ import Styles from '../styles/SelectingRange.module.css'
 export default function SelectingRange() {
 
     const appContext = useContext(AppContext)
-    const {allSurahs , setRangeSelected, setSelectingRange, selectingRange , rangeSelected, setEnd, setStart} = appContext
+    const {allSurahs , setRangeSelected, setSelectingRange, selectingRange , rangeSelected, setEnd, setStart , start , end} = appContext
     const [validate, setValidate] = useState()
 
     // local state
@@ -14,24 +14,38 @@ const [Startval, setStartVal] = useState()
 const [Endval, setEndval] = useState()
 
 
-
+const dispVal=(me)=> {
+    setValidate(me)
+    setTimeout(() => {
+        setValidate(undefined)
+    }, 3000);
+}
 
 useEffect(() => {
 
      if( (Startval != undefined && Startval != 'focused' )&& (Endval != undefined && Endval !='focused2')){
-        setRangeSelected(true)
+        // setRangeSelected(true)
         // setSelectingRange(false)
         // console.log("selected")
+let diff = end -start
+        if((end<= start)  ||  (diff <3)){
+            setRangeSelected(false)
+            dispVal("Please enter a valid range")
+        }else{
+            setRangeSelected(true)
+        }
 
     }
     else {
         // console.log("not")
         setRangeSelected(false)
         // setSelectingRange(true)
-        setValidate("Please pick a range")
-        setTimeout(() => {
-            setValidate(undefined)
-        }, 3000);
+        dispVal("Please pick a range")
+        // setValidate("Please pick a range")
+        // setTimeout(() => {
+        //     setValidate(undefined)
+        // }, 3000);
+
     }
   
 }, [Startval, Endval])

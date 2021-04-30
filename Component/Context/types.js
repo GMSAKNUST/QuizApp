@@ -5,3 +5,4 @@ export const RangeSelected = 'RangeSelected'
 export const AllSurahs ='AllSurahs'
 export const SetStart = 'SetStart'
 export const SetEnd = "SetEnd"
+export const SetGeneratedRange = "SetGeneratedRange"

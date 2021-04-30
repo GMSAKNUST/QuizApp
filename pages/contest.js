@@ -11,7 +11,7 @@ import Styles from '../styles/Contest.module.css'
 
 export default function contest() {
     const appContext = useContext(AppContext)
-    const {firstRangeSelected, selectingRange,rangeSelected, setFirstRangeSelected, setSelectingRange, setRangeSelected} = appContext
+    const {firstRangeSelected, selectingRange,rangeSelected, setFirstRangeSelected, setSelectingRange, setRangeSelected, generatedRange} = appContext
 
     if (!firstRangeSelected) {
        return( <Layout>
@@ -32,7 +32,7 @@ export default function contest() {
     else {
         return (
         <Layout>
-            <RangeSelected/>
+            <RangeSelected />
         </Layout>
         )
         // setRange(false)
