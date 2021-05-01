@@ -1,4 +1,4 @@
-import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs, SetStart, SetEnd, SetGeneratedRange} from '../types'
+import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs, SetStart, SetEnd, SetGeneratedRange , SetSelectedPages, SetShowModal} from '../types'
 import axios from 'axios'
 import {useReducer, useEffect} from 'react'
 import AppContext from './AppContext'
@@ -13,7 +13,9 @@ const initialState = {
     allSurahs:[],
     start:null,
     end:null,
-    generatedRange:{}
+    generatedRange:{},
+    selectedPages:[],
+    showModal:false
 }
 
 const [state, dispatch] = useReducer(AppReducer, initialState)
@@ -99,6 +101,25 @@ dispatch({
     }
 })
 }
+
+
+const setSelectedPages = (value)=> {
+    dispatch({
+        type:SetSelectedPages,
+        payload:{
+            val:value
+        }
+    })
+}
+
+const setShowModal = (value)=> {
+    dispatch({
+        type:SetShowModal,
+        payload:{
+            val:value
+        }
+    })
+}
 async function SendRange(start , end){
    
     // axios.post("/api/randomSurahs", {
@@ -136,6 +157,8 @@ allSurahs:state.allSurahs,
 start: state.start,
 end:state.end,
 generatedRange:state.generatedRange,
+selectedPages:state.selectedPages,
+showModal:state.showModal,
 setFirstRangeSelected,
 setRangeSelected,
 setSelectingRange,
@@ -144,6 +167,8 @@ setStart,
 SendRange,
 setGeneratedRange,
 setAllSurahs,
+setSelectedPages,
+setShowModal,
 
     }}
     >

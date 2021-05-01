@@ -27,8 +27,8 @@ useEffect(() => {
         // setRangeSelected(true)
         // setSelectingRange(false)
         // console.log("selected")
-let diff = end -start
-        if((end<= start)  ||  (diff <3)){
+// let diff = end -start
+        if((end<= start) ){
             setRangeSelected(false)
             dispVal("Please enter a valid range")
         }else{

@@ -1,22 +1,45 @@
-import {useContext} from 'react'
+import {useState, useContext} from 'react'
 import AppContext from '../Component/Context/AppContext/AppContext'
 import Styles from '../styles/RangeSelected.module.css'
+import Modal from './Modal'
 
 
 export default function RangeSelected() {
     const appContext = useContext(AppContext)
-    const {generatedRange} = appContext
-// console.log(generatedRange[0])
+    const {generatedRange, setSelectedPages, showModal, setShowModal} = appContext
 
-console.log(Object.keys(generatedRange))
-const change = (e)=> {
-    console.log(e.target.value)
+
+
+ const change = (e)=> {
+    // console.log(e.target.value)
+   
+
+    let pages = []
+    Object.values(generatedRange[e.target.value]).forEach(ress=> 
+        // console.log(ress.page_url)
+        pages.push(ress.page_url)
+        // setPages([...ress.page_url])
+        )
+    setSelectedPages(pages)
+    
+    setShowModal(true);
+
+   
+   
+
+   
+
+   
 }
 
-// console.log(Object.keys(generatedRange["1"]))
     return (
         <div>
-            {/* modal */}
+            {showModal?
+        <Modal/>:
+        null    
+        }
+
+
          <center className={Styles.rangeContainer}>
 
         

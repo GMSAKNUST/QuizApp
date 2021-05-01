@@ -1,4 +1,4 @@
-import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs, SetEnd, SetStart, SetGeneratedRange} from '../types'
+import {FirstRangeSelected, RangeSelected, SelectingRange, AllSurahs, SetEnd, SetStart, SetGeneratedRange , SetSelectedPages, SetShowModal} from '../types'
 
 
 
@@ -50,6 +50,20 @@ switch (action.type) {
         return {
             ...state,
             generatedRange:action.payload.val
+        }
+    }
+
+    case SetSelectedPages:{
+        return {
+            ...state,
+            selectedPages:action.payload.val
+        }
+    }
+
+    case SetShowModal:{
+        return {
+            ...state,
+            showModal:action.payload.val
         }
     }
         
