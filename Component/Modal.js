@@ -34,8 +34,8 @@ const DontShowMod = (e)=> {setShowModal(false)
            </div>
                
                <center>
-                   <div>
-                 <img src={current} alt=""/>
+                   <div className={Styles.myImgContainer}>
+                 <img  src={current} alt=""/>
                  
                    </div>
                    <button onClick={changeMe}>Next</button>
