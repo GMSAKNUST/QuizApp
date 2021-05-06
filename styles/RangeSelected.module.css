@@ -2,9 +2,9 @@
   display: grid;
   color: red;
 
-  grid-template-columns: repeat(3, 1fr);
-  width: 40vw;
-  margin-left: 170px;
+  grid-template-columns: repeat(4, 1fr);
+  width: 35vw;
+  margin-left: 50px;
 }
 
 .rangeContainer span {
