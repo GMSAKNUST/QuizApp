@@ -48,7 +48,8 @@ async function  ChangingState  (){
                     src='/images/Mobile Quran.png'
                     
                     height={354}
-                width={354}/>
+                width={354}
+                />
                 {
                 firstRangeSelected?
                 <div className={LayoutStyles.firstSelected}>

@@ -11,25 +11,23 @@ export default function RangeSelected() {
 
 
  const change = (e)=> {
-    // console.log(e.target.value)
-   
-
-    let pages = []
-    Object.values(generatedRange[e.target.value]).forEach(ress=> 
-        // console.log(ress.page_url)
-        pages.push(ress.page_url)
-        // setPages([...ress.page_url])
-        )
-    setSelectedPages(pages)
-    
     setShowModal(true);
+    setSelectedPagesNow(e)
+    
+}
 
-   
-   
+async function setSelectedPagesNow(e){
+    
+    let pages = []
+   try {
+    await Object.values(generatedRange[e.target.value]).forEach(ress=> 
+        pages.push(ress.page_url)
+        )
+    await setSelectedPages(pages)
 
-   
-
-   
+   } catch (error) {
+       console.log(error);
+   }
 }
 
     return (
@@ -63,13 +61,6 @@ export default function RangeSelected() {
 
 
 
-// export async function getStaticProps() {
-    
-//     return {
-//       props: {
-// generatedRange:"love",
-//       }, // will be passed to the page component as props
-//     }
-//   }
+
 
 

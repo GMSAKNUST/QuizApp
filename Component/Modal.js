@@ -9,8 +9,9 @@ export default function Modal() {
     const {selectedPages, showModal, setShowModal} = appContext
     const [index, setIndex] = useState(0)
 const [current, setCurrent] = useState(selectedPages[index])
-const DontShowMod = (e)=> {setShowModal(false)
-}
+
+const DontShowModal = (e)=> {setShowModal(false)}
+
 
   async function changeMe(e){
     let len = selectedPages.length;
@@ -26,11 +27,9 @@ const DontShowMod = (e)=> {setShowModal(false)
     
 
 }
-// let current = selectedPages[index]
     return (
         <div className={Styles.ModalMain}>
-           <div className={Styles.backdrop} onClick={DontShowMod}>
-{/* hi */}
+           <div className={Styles.backdrop} onClick={DontShowModal}>
            </div>
                
                <center>
