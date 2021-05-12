@@ -1,8 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { toHaveStyle } from "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
-// import { useRouter } from "next/router";
-import { getPage } from "next-page-tester";
 import App from "../pages/index";
 
 test("Verify All element Present in the document", () => {
