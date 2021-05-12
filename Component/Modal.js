@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import AppContext from "../Component/Context/AppContext/AppContext";
+
 import Styles from "../styles/Modal.module.css";
 import Image from "next/image";
 
@@ -10,8 +11,10 @@ export default function Modal() {
     showModal,
     setShowModal,
     setSelectedPages,
+    currentImage,
+    setCurrentImage,
   } = appContext;
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
   const [current, setCurrent] = useState(selectedPages[index]);
 
   const DontShowModal = (e) => {
@@ -21,24 +24,26 @@ export default function Modal() {
 
   async function changeMe(e) {
     let len = selectedPages.length;
-    console.log(len);
     setIndex(index + 1);
 
     if (index < 3) {
-      await setCurrent(selectedPages[index]);
+      await setCurrentImage(selectedPages[index]);
     } else {
-      // setIndex(0)
       setShowModal(false);
       setSelectedPages([]);
     }
   }
   return (
     <div className={Styles.ModalMain}>
-      <div className={Styles.backdrop} onClick={DontShowModal}></div>
+      <div
+        className={Styles.backdrop}
+        data-testid="backdrop"
+        onClick={DontShowModal}
+      ></div>
 
       <center>
         <div className={Styles.myImgContainer}>
-          <img src={current} alt="" />
+          <img src={currentImage} alt="" />
         </div>
         <button onClick={changeMe}>Next</button>
       </center>
