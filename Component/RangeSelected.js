@@ -28,6 +28,7 @@ export default function RangeSelected() {
       await setCurrentImage(pages[0]);
     } catch (error) {
       console.log(error);
+      setShowModal(false);
     }
   }
 
