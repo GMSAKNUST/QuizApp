@@ -9,6 +9,7 @@ import {
   SetSelectedPages,
   SetShowModal,
   SetCurrentImage,
+  SetErrorMessage,
 } from "../types";
 
 const AppReducer = (state, action) => {
@@ -73,6 +74,12 @@ const AppReducer = (state, action) => {
       return {
         ...state,
         currentImage: action.payload.val,
+      };
+    }
+    case SetErrorMessage: {
+      return {
+        ...state,
+        errorMessage: action.payload.val,
       };
     }
     default:

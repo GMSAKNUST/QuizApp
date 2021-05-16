@@ -9,6 +9,7 @@ import {
   SetSelectedPages,
   SetShowModal,
   SetCurrentImage,
+  SetErrorMessage,
 } from "../types";
 import axios from "axios";
 import { useReducer, useEffect } from "react";
@@ -27,6 +28,7 @@ const AppState = (props) => {
     selectedPages: [],
     showModal: false,
     currentImage: undefined,
+    errorMessage: undefined,
   };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -123,14 +125,18 @@ const AppState = (props) => {
   async function SendRange(start, end) {
     await axios
       .get(
-        `https://mqi-quiz-api.herokuapp.com/quiz/quran/generate-pages/?start=${state.start}&end=${state.end}`
+        `https://mqi-quiz-api.herokuapp.com/quiz/quran/generate-pages/?start=${state.start}&end=${state.end}`,
+        { validateStatus: false }
       )
       .then((res) => {
         if (res.status != 200) {
           setRangeSelected(false);
           setSelectingRange(true);
+          console.log(res.data.error);
+          displayErrorMessage(res.data.error);
         } else {
           // store range
+          // console.log(res);
           setGeneratedRange(res.data);
           setRangeSelected(true);
           setSelectingRange(false);
@@ -146,6 +152,21 @@ const AppState = (props) => {
       },
     });
   };
+  const setErrorMessage = (value) => {
+    dispatch({
+      type: SetErrorMessage,
+      payload: {
+        val: value,
+      },
+    });
+  };
+
+  const displayErrorMessage = (message) => {
+    setErrorMessage(message);
+    setTimeout(() => {
+      setErrorMessage(undefined);
+    }, 4000);
+  };
 
   return (
     <AppContext.Provider
@@ -160,6 +181,7 @@ const AppState = (props) => {
         selectedPages: state.selectedPages,
         showModal: state.showModal,
         currentImage: state.currentImage,
+        errorMessage: state.errorMessage,
         setFirstRangeSelected,
         setRangeSelected,
         setSelectingRange,
@@ -171,6 +193,8 @@ const AppState = (props) => {
         setSelectedPages,
         setShowModal,
         setCurrentImage,
+        setErrorMessage,
+        displayErrorMessage,
       }}
     >
       {props.children}
