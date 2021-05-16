@@ -9,3 +9,4 @@ export const SetGeneratedRange = "SetGeneratedRange";
 export const SetSelectedPages = "SetSelectedPaged";
 export const SetShowModal = "SetShowModal";
 export const SetCurrentImage = "SetCurrentImage";
+export const SetErrorMessage = "SetErrorMessage";

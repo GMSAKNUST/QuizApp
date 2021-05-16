@@ -14,19 +14,15 @@ export default function SelectingRange() {
     setStart,
     start,
     end,
+    errorMessage,
+    setErrorMessage,
+    displayErrorMessage,
   } = appContext;
-  const [validate, setValidate] = useState();
+  // const [errorMessage, setErrorMessage] = useState();
 
   // local state
   const [Startval, setStartVal] = useState();
   const [Endval, setEndval] = useState();
-
-  const dispVal = (me) => {
-    setValidate(me);
-    setTimeout(() => {
-      setValidate(undefined);
-    }, 3000);
-  };
 
   useEffect(() => {
     if (
@@ -35,17 +31,19 @@ export default function SelectingRange() {
       Endval != undefined &&
       Endval != "focused2"
     ) {
-      if (end <= start) {
-        setRangeSelected(false);
-        dispVal("Please enter a valid range");
-      } else {
-        setRangeSelected(true);
-      }
+      setRangeSelected(true);
     } else {
       setRangeSelected(false);
-      dispVal("Please pick a range");
+      displayErrorMessage("Please pick a range");
     }
   }, [Startval, Endval]);
+
+  // const displayError = (message) => {
+  //   setErrorMessage(message);
+  //   setTimeout(() => {
+  //     setErrorMessage(undefined);
+  //   }, 3000);
+  // };
 
   const myRange = (e) => {
     let myv = e.target.value;
@@ -102,7 +100,7 @@ export default function SelectingRange() {
           </select>
         </div>
       </center>
-      {!rangeSelected ? <span>{validate}</span> : null}
+      {!rangeSelected ? <span>{errorMessage}</span> : null}
     </div>
   );
 }
