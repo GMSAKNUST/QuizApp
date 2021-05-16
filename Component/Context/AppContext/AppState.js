@@ -145,6 +145,12 @@ const AppState = (props) => {
           setSelectingRange(false);
           setLoading(false);
         }
+      })
+      .catch(function (error) {
+        setLoading(false);
+        setRangeSelected(false);
+        setSelectingRange(true);
+        displayErrorMessage("Check Your Internet Connection");
       });
   }
 
