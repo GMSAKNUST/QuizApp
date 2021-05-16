@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import AppContext from "../Component/Context/AppContext/AppContext";
 import Styles from "../styles/SelectingRange.module.css";
+import Image from "next/image";
 
 export default function SelectingRange() {
   const appContext = useContext(AppContext);
@@ -17,8 +18,9 @@ export default function SelectingRange() {
     errorMessage,
     setErrorMessage,
     displayErrorMessage,
+    loading,
+    setLoading,
   } = appContext;
-  // const [errorMessage, setErrorMessage] = useState();
 
   // local state
   const [Startval, setStartVal] = useState();
@@ -38,13 +40,6 @@ export default function SelectingRange() {
     }
   }, [Startval, Endval]);
 
-  // const displayError = (message) => {
-  //   setErrorMessage(message);
-  //   setTimeout(() => {
-  //     setErrorMessage(undefined);
-  //   }, 3000);
-  // };
-
   const myRange = (e) => {
     let myv = e.target.value;
 
@@ -63,8 +58,7 @@ export default function SelectingRange() {
   return (
     <div className={Styles.main}>
       <h1>Select Surah Range</h1>
-      {/* selecting Range */}
-      {/* {allSurahs} */}
+
       <center>
         <div>
           <select
@@ -100,6 +94,14 @@ export default function SelectingRange() {
           </select>
         </div>
       </center>
+      {loading ? (
+        <Image
+          className={Styles.loader}
+          src="/images/spinning-circles.svg"
+          height={45}
+          width={0}
+        />
+      ) : null}
       {!rangeSelected ? <span>{errorMessage}</span> : null}
     </div>
   );
