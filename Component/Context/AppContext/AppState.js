@@ -10,6 +10,7 @@ import {
   SetShowModal,
   SetCurrentImage,
   SetErrorMessage,
+  SetLoading,
 } from "../types";
 import axios from "axios";
 import { useReducer, useEffect } from "react";
@@ -29,6 +30,7 @@ const AppState = (props) => {
     showModal: false,
     currentImage: undefined,
     errorMessage: undefined,
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -123,6 +125,7 @@ const AppState = (props) => {
     });
   };
   async function SendRange(start, end) {
+    setLoading(true);
     await axios
       .get(
         `https://mqi-quiz-api.herokuapp.com/quiz/quran/generate-pages/?start=${state.start}&end=${state.end}`,
@@ -132,7 +135,7 @@ const AppState = (props) => {
         if (res.status != 200) {
           setRangeSelected(false);
           setSelectingRange(true);
-          console.log(res.data.error);
+          setLoading(false);
           displayErrorMessage(res.data.error);
         } else {
           // store range
@@ -140,6 +143,7 @@ const AppState = (props) => {
           setGeneratedRange(res.data);
           setRangeSelected(true);
           setSelectingRange(false);
+          setLoading(false);
         }
       });
   }
@@ -168,6 +172,14 @@ const AppState = (props) => {
     }, 4000);
   };
 
+  const setLoading = (value) => {
+    dispatch({
+      type: SetLoading,
+      payload: {
+        val: value,
+      },
+    });
+  };
   return (
     <AppContext.Provider
       value={{
@@ -182,6 +194,7 @@ const AppState = (props) => {
         showModal: state.showModal,
         currentImage: state.currentImage,
         errorMessage: state.errorMessage,
+        loading: state.loading,
         setFirstRangeSelected,
         setRangeSelected,
         setSelectingRange,
@@ -195,6 +208,7 @@ const AppState = (props) => {
         setCurrentImage,
         setErrorMessage,
         displayErrorMessage,
+        setLoading,
       }}
     >
       {props.children}

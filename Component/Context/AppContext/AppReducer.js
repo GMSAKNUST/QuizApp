@@ -10,6 +10,7 @@ import {
   SetShowModal,
   SetCurrentImage,
   SetErrorMessage,
+  SetLoading,
 } from "../types";
 
 const AppReducer = (state, action) => {
@@ -80,6 +81,12 @@ const AppReducer = (state, action) => {
       return {
         ...state,
         errorMessage: action.payload.val,
+      };
+    }
+    case SetLoading: {
+      return {
+        ...state,
+        loading: action.payload.val,
       };
     }
     default:
