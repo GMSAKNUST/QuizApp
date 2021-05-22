@@ -16,6 +16,7 @@ export default function Layout({ children }) {
     start,
     end,
     SendRange,
+    errorMessage,
   } = appContext;
 
   const fullDate = new Date();
@@ -42,6 +43,9 @@ export default function Layout({ children }) {
             <div className={LayoutStyles.firstSelected}>
               <h1> MQI QURAN FAIR {date}</h1>
               <h3>HIFZ CONTEST</h3>
+              {rangeSelected ? (
+                <span style={{ color: "red" }}>{errorMessage}</span>
+              ) : null}
             </div>
           ) : (
             <div className={LayoutStyles.firstUnselected}>
