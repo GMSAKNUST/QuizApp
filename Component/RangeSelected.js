@@ -21,7 +21,7 @@ export default function RangeSelected() {
   async function setSelectedPagesNow(e) {
     let pages = [];
     try {
-      await Object.values(generatedRange[e.target.value]).forEach((ress) =>
+      Object.values(generatedRange[e.target.value]).forEach((ress) =>
         pages.push(ress.page_url)
       );
       await setSelectedPages(pages);
