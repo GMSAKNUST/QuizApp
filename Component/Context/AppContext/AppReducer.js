@@ -11,6 +11,7 @@ import {
   SetCurrentImage,
   SetErrorMessage,
   SetLoading,
+  SetImageHasLoad,
 } from "../types";
 
 const AppReducer = (state, action) => {
@@ -87,6 +88,12 @@ const AppReducer = (state, action) => {
       return {
         ...state,
         loading: action.payload.val,
+      };
+    }
+    case SetImageHasLoad: {
+      return {
+        ...state,
+        imageHasLoad: action.payload.val,
       };
     }
     default:

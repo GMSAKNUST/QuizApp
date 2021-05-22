@@ -11,3 +11,4 @@ export const SetShowModal = "SetShowModal";
 export const SetCurrentImage = "SetCurrentImage";
 export const SetErrorMessage = "SetErrorMessage";
 export const SetLoading = "SetLoading";
+export const SetImageHasLoad = "SetImageHasLoad";

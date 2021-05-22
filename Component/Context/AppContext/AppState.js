@@ -11,6 +11,7 @@ import {
   SetCurrentImage,
   SetErrorMessage,
   SetLoading,
+  SetImageHasLoad,
 } from "../types";
 import axios from "axios";
 import { useReducer, useEffect } from "react";
@@ -31,6 +32,7 @@ const AppState = (props) => {
     currentImage: undefined,
     errorMessage: undefined,
     loading: false,
+    imageHasLoad: false,
   };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -186,6 +188,15 @@ const AppState = (props) => {
       },
     });
   };
+  const setImageHasLoad = (value) => {
+    dispatch({
+      type: SetImageHasLoad,
+      payload: {
+        val: value,
+      },
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -201,6 +212,7 @@ const AppState = (props) => {
         currentImage: state.currentImage,
         errorMessage: state.errorMessage,
         loading: state.loading,
+        imageHasLoad: state.imageHasLoad,
         setFirstRangeSelected,
         setRangeSelected,
         setSelectingRange,
@@ -215,6 +227,7 @@ const AppState = (props) => {
         setErrorMessage,
         displayErrorMessage,
         setLoading,
+        setImageHasLoad,
       }}
     >
       {props.children}
