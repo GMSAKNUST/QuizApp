@@ -40,7 +40,8 @@
   background: green;
   color: #fff;
   border-radius: 8px;
-  margin-left: 300px;
+  /* margin-left: 300px; */
+  margin-left: 20px;
   outline: none;
   border: none;
   cursor: pointer;
