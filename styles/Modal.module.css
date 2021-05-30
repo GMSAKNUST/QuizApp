@@ -33,6 +33,7 @@
 .myImgContainer img {
   width: 900px;
   height: 800px;
+  /* object-fit: contain; */
 }
 .ModalMain span {
   position: static;
@@ -70,8 +71,17 @@
 }
 
 @media (min-width: 1280px) {
+  .ModalMain {
+    width: auto;
+    height: auto;
+    position: fixed;
+    z-index: 20;
+    margin: -500px 200px;
+  }
   .ModalMain center {
     /* margin: 30px 170px; */
     margin-left: 15%;
+    width: auto;
+    height: auto;
   }
 }
