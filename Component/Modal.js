@@ -45,6 +45,21 @@ export default function Modal() {
       setShowImage(true);
     }
   };
+
+  async function toPrevious() {
+    setIndex(index - 1);
+    setShowImage(false);
+    setImageHasLoad(false);
+    let newIndex = index - 2;
+    if (index > 1) {
+      setCurrentImage(selectedPages[newIndex]);
+      await setImageHasLoad(true);
+    } else {
+      setShowModal(false);
+      setSelectedPages([]);
+    }
+  }
+
   return (
     <div className={Styles.ModalMain}>
       <div
@@ -65,6 +80,7 @@ export default function Modal() {
           )}
         </div>
         <span>
+          <button onClick={toPrevious}>Back</button>
           <button onClick={changeImage}>Next</button>
           <button onClick={ImageToggler}>{showImage ? "hide" : "show"}</button>
         </span>

@@ -131,7 +131,8 @@ const AppState = (props) => {
     await axios
       .get(
         `https://mqi-quiz-api.herokuapp.com/quiz/quran/generate-pages/?start=${state.start}&end=${state.end}`,
-        { validateStatus: false }
+        { validateStatus: false },
+        { timeout: 2 }
       )
       .then((res) => {
         if (res.status != 200) {

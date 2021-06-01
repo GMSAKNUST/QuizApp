@@ -27,7 +27,7 @@ export default function RangeSelected() {
       await setSelectedPages(pages);
       await setCurrentImage(pages[0]);
     } catch (error) {
-      console.log(error);
+      //catch error when label not clicked
       setShowModal(false);
     }
   }
@@ -41,12 +41,14 @@ export default function RangeSelected() {
           <span key={res} onClick={change}>
             <input
               type="radio"
-              name="RangeSelected"
+              name={res}
               id={`Range${res}`}
               keys={res}
               value={res}
             />
-            <label key={res}>{res}</label>
+            <label htmlFor={res} key={res}>
+              {res}
+            </label>
           </span>
         ))}
       </center>

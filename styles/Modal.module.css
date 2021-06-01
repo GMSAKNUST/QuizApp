@@ -7,32 +7,37 @@
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.8);
-  /* display: f; */
 }
 
 .ModalMain center {
   z-index: 6;
   position: absolute;
-  max-width: 900px;
-  width: 800px;
-  margin: 100px 25rem;
-  height: 620px;
+  max-width: 1100px;
+  max-height: 900px;
+  width: 1000px;
+  margin: 50px 25rem;
+  height: 820px;
   top: 10px;
 
   background: #fff;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
 }
 
 .myImgContainer {
-  width: 500px;
-  height: 540px;
+  width: 900px;
+  height: 800px;
   margin: auto;
+  /* background: #000; */
 }
 .myImgContainer img {
-  width: 500px;
-  height: 540px;
+  width: 900px;
+  height: 800px;
+  /* object-fit: contain; */
+}
+.ModalMain span {
+  position: static;
+  margin-top: -20px;
 }
 
 .ModalMain button {
@@ -40,14 +45,17 @@
   background: green;
   color: #fff;
   border-radius: 8px;
-  /* margin-left: 300px; */
   margin-left: 20px;
   outline: none;
   border: none;
   cursor: pointer;
   width: 80px;
-  margin-top: 10px;
+  margin-top: -10px;
   margin-bottom: 10px;
+}
+
+.ModalMain h1 {
+  margin-top: 250px;
 }
 
 @media (max-width: 1230px) {
@@ -59,5 +67,21 @@
 @media (max-width: 1030px) {
   .ModalMain center {
     margin: 70px auto;
+  }
+}
+
+@media (min-width: 1280px) {
+  .ModalMain {
+    width: auto;
+    height: auto;
+    position: fixed;
+    z-index: 20;
+    margin: -500px 200px;
+  }
+  .ModalMain center {
+    /* margin: 30px 170px; */
+    margin-left: 15%;
+    width: auto;
+    height: auto;
   }
 }
