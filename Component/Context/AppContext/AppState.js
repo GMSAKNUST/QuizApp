@@ -156,7 +156,40 @@ const AppState = (props) => {
         displayErrorMessage("Check Your Internet Connection");
       });
   }
+  const sendImageToAdmin = (imgUrl) => {
+    axios
+      .post(
+        "https://mqi-quiz-api.herokuapp.com/quiz/quran/current-page/show/",
+        {
+          page_url: imgUrl,
+        }
+      )
+      .then((res) => {
+        if (res.data.success) {
+          console.log("succes");
+        } else {
+          console.log("erro");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
+  const removeImagefromAdmin = () => {
+    axios
+      .get("mqi-quiz-api.herokuapp.com/quiz/quran/current-page/remove/")
+      .then((res) => {
+        if (res.status != 200) {
+          displayErrorMessage("Check Your Internet Connection");
+        } else {
+        }
+      })
+      .catch(function (error) {
+        displayErrorMessage("Check Your Internet Connection");
+        // console.log(error);
+      });
+  };
   const setCurrentImage = (value) => {
     dispatch({
       type: SetCurrentImage,
@@ -229,6 +262,8 @@ const AppState = (props) => {
         displayErrorMessage,
         setLoading,
         setImageHasLoad,
+        sendImageToAdmin,
+        removeImagefromAdmin,
       }}
     >
       {props.children}
