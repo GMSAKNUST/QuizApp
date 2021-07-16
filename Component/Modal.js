@@ -14,6 +14,8 @@ export default function Modal() {
     currentImage,
     setCurrentImage,
     setImageHasLoad,
+    removeImagefromAdmin,
+    sendImageToAdmin,
   } = appContext;
   const [index, setIndex] = useState(1);
   const [showImage, setShowImage] = useState(false);
@@ -22,6 +24,7 @@ export default function Modal() {
     setShowModal(false);
     setSelectedPages([]);
     setImageHasLoad(false);
+    removeImagefromAdmin();
   };
 
   async function changeImage(e) {
@@ -41,8 +44,10 @@ export default function Modal() {
   const ImageToggler = () => {
     if (showImage) {
       setShowImage(false);
+      removeImagefromAdmin();
     } else {
       setShowImage(true);
+      sendImageToAdmin(currentImage);
     }
   };
 
