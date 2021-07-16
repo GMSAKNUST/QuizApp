@@ -178,7 +178,7 @@ const AppState = (props) => {
 
   const removeImagefromAdmin = () => {
     axios
-      .get("mqi-quiz-api.herokuapp.com/quiz/quran/current-page/remove/")
+      .get("https://mqi-quiz-api.herokuapp.com/quiz/quran/current-page/remove/")
       .then((res) => {
         if (res.status != 200) {
           displayErrorMessage("Check Your Internet Connection");
